@@ -58,6 +58,51 @@ app.post("/auth/register", async (req, res) => {
   }
 });
 
+//@desc login a user
+//@auth not required
+//@route POST /auth/login
+app.post("/auth/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  const admin = await Admin.findOne({ email });
+
+  if (!admin) {
+    res.status(403).json({ message: "User not found." });
+  }
+
+  const comparePassword = await bcrypt.compare(password, admin.password);
+
+  if (!comparePassword) {
+    res.status(403).json({ message: "Invalid credentials." });
+  }
+
+  const accessToken = jwt.sign(
+    {
+      name: admin.name,
+      email: admin.email,
+      id: admin.id,
+    },
+    process.env.SECRET_KEY,
+    { expiresIn: "15m" }
+  );
+
+  const refreshToken = jwt.sign(
+    {
+      name: admin.name,
+      email: admin.email,
+      id: admin.id,
+    },
+    process.env.SECRET_KEY,
+    { expiresIn: "7d" }
+  );
+
+  res.json({
+    message: "Login successful",
+    refresh_token: refreshToken,
+    access_token: accessToken,
+  });
+});
+
 app.listen(3000, () => {
   console.log("listening on port 3000.");
 });
