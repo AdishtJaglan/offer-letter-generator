@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== "production") {
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import userRoutes from "./routes/user.js";
+import adminRoutes from "./routes/admin.js";
 
 const app = express();
 
@@ -19,7 +19,8 @@ mongoose
   });
 
 app.use(express.json());
-app.use("/auth", userRoutes);
+app.use("/auth", adminRoutes);
+app.use("/student");
 
 app.listen(3000, () => {
   console.log("listening on port 3000.");

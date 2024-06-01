@@ -29,7 +29,7 @@ export const registerAdmin = async (req, res) => {
 
   await admin.save();
 
-  console.log("Created user: ", admin);
+  console.log("Created admin: ", admin);
 
   if (admin) {
     res.status(200).json({ message: "Admin created successfully.", admin });
