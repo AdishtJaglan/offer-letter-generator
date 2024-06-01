@@ -1,5 +1,5 @@
-import mongoose, { mongo } from "mongoose";
-const Schema = { mongoose };
+import mongoose from "mongoose";
+const { Schema } = mongoose;
 
 const AdminSchema = new Schema({
   name: {
