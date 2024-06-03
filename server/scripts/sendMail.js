@@ -17,23 +17,7 @@ const transporter = createTransport({
   },
 });
 
-const mailOptions = {
-  from: {
-    name: "adishtlol",
-    address: process.env.USER_EMAIL,
-  },
-  to: ["adisht1521@gmail.com"],
-  subject: "Suvidha Offer Letter",
-  attachments: [
-    {
-      filename: "updateOfferLetter.pdf",
-      path: join(__dirname, "../template/updateOfferLetter.pdf"),
-      contentType: "application/pdf",
-    },
-  ],
-};
-
-const sendMail = async function (transporter, mailOptions) {
+export const sendMail = async function (mailOptions) {
   try {
     await transporter.sendMail(mailOptions);
     console.log("email has been sent.");
@@ -41,5 +25,3 @@ const sendMail = async function (transporter, mailOptions) {
     console.log("some error occurred: ", err);
   }
 };
-
-sendMail(transporter, mailOptions);
