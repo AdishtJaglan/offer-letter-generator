@@ -1,6 +1,9 @@
 import express from "express";
 import { verifyToken } from "../middleware.js";
-import { createPDFandSendMail } from "../controller/offerLetterController.js";
+import {
+  createPDFandDownload,
+  createPDFandSendMail,
+} from "../controller/offerLetterController.js";
 
 const router = express.Router();
 
@@ -8,5 +11,10 @@ const router = express.Router();
 //@auth required
 //@route GET /offer-letter/send/:id
 router.get("/send/:id", verifyToken, createPDFandSendMail);
+
+//@desc create offer letter PDF and download it in users local device
+//@auth required
+//@route GET /offer-letter/download/:id
+router.get("/download/:id", verifyToken, createPDFandDownload);
 
 export default router;
