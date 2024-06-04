@@ -3,6 +3,7 @@ import path from "path";
 import Student from "../models/student.js";
 import { populatePDF } from "../scripts/populateLetter.js";
 import { sendMail } from "../scripts/sendMail.js";
+import { deleteLetter } from "../scripts/deleteLetter.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -52,6 +53,7 @@ export const createPDFandSendMail = async (req, res) => {
   };
 
   await sendMail(mailOptions);
+  await deleteLetter(outputPDFPath);
 
   res.status(200).json({ message: "Email sent successfully." });
 };
@@ -84,10 +86,17 @@ export const createPDFandDownload = async (req, res) => {
     data
   );
 
-  res.download(outputPDFPath, `${student.name}.pdf`, (err) => {
+  res.download(outputPDFPath, `${student.name}.pdf`, async (err) => {
     if (err) {
-      console.error("Error downloading the PDF:", err);
-      res.status(500).json({ message: "Error downloading the PDF." });
+      console.log("Error downloading the pdf: ", err);
+      res.status(500).json({ message: "PDF not downloaded." });
+    } else {
+      try {
+        await deleteLetter(outputPDFPath);
+        console.log(`Deleted PDF: ${outputPDFPath}`);
+      } catch (e) {
+        console.log("Error deleting PDF: ", e);
+      }
     }
   });
 };
