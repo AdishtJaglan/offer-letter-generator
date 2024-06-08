@@ -1,5 +1,5 @@
 import express from "express";
-import { verifyToken } from "../middleware.js";
+import { verifyToken } from "../middlewares/middleware.js";
 import {
   createPDFandDownload,
   createPDFandSendMail,

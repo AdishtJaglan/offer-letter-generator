@@ -6,13 +6,14 @@ import {
   getStudents,
   updateStudent,
 } from "../controller/studentController.js";
-import { verifyToken } from "../middleware.js";
+import { verifyToken } from "../middlewares/middleware.js";
+import validateStudent from "../middlewares/studentValidate.js";
 const router = express.Router();
 
 //@desc enter data for a student
 //@auth required
 //@route POST /student/create
-router.post("/create", verifyToken, createStudent);
+router.post("/create", verifyToken, validateStudent, createStudent);
 
 //@desc get all student info, can add a query string ?limit=N to get last N entries into the db
 //@auth required
@@ -27,7 +28,7 @@ router.get("/:id", verifyToken, getOneStudent);
 //@desc update student info
 //@auth required
 //@route PUT /student/:id
-router.put("/:id", verifyToken, updateStudent);
+router.put("/:id", verifyToken, validateStudent, updateStudent);
 
 //@desc delete a student
 //@auth required
