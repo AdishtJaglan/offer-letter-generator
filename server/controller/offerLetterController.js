@@ -4,6 +4,8 @@ import Student from "../models/student.js";
 import { populatePDF } from "../scripts/populateLetter.js";
 import { sendMail } from "../scripts/sendMail.js";
 import { deleteLetter } from "../scripts/deleteLetter.js";
+import AsyncHandler from "../utility/asyncHandler.js";
+import ExpressError from "../utility/ExpressHandler.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,12 +13,12 @@ const __dirname = path.dirname(__filename);
 //@desc create offer letter PDF and email it to the student
 //@auth required
 //@route GET /offer-letter/send/:id
-export const createPDFandSendMail = async (req, res) => {
+export const createPDFandSendMail = AsyncHandler(async (req, res) => {
   const { id } = req.params;
   const student = await Student.findById(id);
 
   if (!student) {
-    return res.status(400).json({ message: "Student not found." });
+    throw new ExpressError("Student not found.", 400);
   }
 
   const data = {
@@ -56,7 +58,7 @@ export const createPDFandSendMail = async (req, res) => {
   await deleteLetter(outputPDFPath);
 
   res.status(200).json({ message: "Email sent successfully." });
-};
+});
 
 //@desc create offer letter PDF and download it in users local device
 //@auth required
@@ -66,7 +68,7 @@ export const createPDFandDownload = async (req, res) => {
   const student = await Student.findById(id);
 
   if (!student) {
-    return res.status(401).json({ message: "Student not found." });
+    throw new ExpressError("Student not found.", 400);
   }
 
   const data = {
@@ -89,7 +91,7 @@ export const createPDFandDownload = async (req, res) => {
   res.download(outputPDFPath, `${student.name}.pdf`, async (err) => {
     if (err) {
       console.log("Error downloading the pdf: ", err);
-      res.status(500).json({ message: "PDF not downloaded." });
+      throw new ExpressError("PDF not downloaded.", 500);
     } else {
       try {
         await deleteLetter(outputPDFPath);

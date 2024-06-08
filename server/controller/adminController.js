@@ -1,16 +1,17 @@
 import Admin from "../models/admin.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import AsyncHandler from "../utility/asyncHandler.js";
+import ExpressError from "../utility/ExpressHandler.js";
 
 //@desc register a admin
 //@auth not required
 //@route POST /auth/register
-export const registerAdmin = async (req, res) => {
+export const registerAdmin = AsyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
-    res.status(400);
-    throw new Error("All field mandatory.");
+    throw new ExpressError("All field mandatory.", 400);
   }
 
   const checkAdmin = await Admin.findOne({ email });
@@ -36,18 +37,18 @@ export const registerAdmin = async (req, res) => {
   } else {
     res.status(400).json({ message: "Admin not created." });
   }
-};
+});
 
 //@desc login a admin
 //@auth not required
 //@route POST /auth/login
-export const loginAdmin = async (req, res) => {
+export const loginAdmin = AsyncHandler(async (req, res) => {
   const { email, password } = req.body;
 
   const admin = await Admin.findOne({ email });
 
   if (!admin) {
-    res.status(403).json({ message: "User not found." });
+    throw new ExpressError("User not found.", 403);
   }
 
   const comparePassword = await bcrypt.compare(password, admin.password);
@@ -81,4 +82,4 @@ export const loginAdmin = async (req, res) => {
     refresh_token: refreshToken,
     access_token: accessToken,
   });
-};
+});
