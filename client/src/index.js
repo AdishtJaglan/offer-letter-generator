@@ -1,27 +1,4 @@
 import "./style.css";
-import axios from "axios";
+import { handleLogin } from "./loginPage";
 
-const loginForm = document.querySelector(".login-form");
-
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const userEmail = document.querySelector("#email");
-  const userPassword = document.querySelector("#password");
-
-  axios
-    .post("http://localhost:3000/auth/login", {
-      email: userEmail.value,
-      password: userPassword.value,
-    })
-    .then((res) => {
-      console.log("Refresh Token:", res.data.refresh_token);
-      console.log("Access Token:", res.data.access_token);
-    })
-    .catch((err) => {
-      console.log("error response: ", err.response);
-    });
-
-  userEmail.value = "";
-  userPassword.value = "";
-});
+handleLogin();
