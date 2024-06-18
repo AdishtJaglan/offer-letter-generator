@@ -13,6 +13,6 @@ router.post("/register", verifyToken, validateAdmin, registerAdmin);
 //@desc login a admin
 //@auth not required
 //@route POST /auth/login
-router.post("/login", validateAdmin, loginAdmin);
+router.post("/login", loginAdmin);
 
 export default router;

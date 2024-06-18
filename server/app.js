@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 import ExpressError from "./utility/ExpressHandler.js";
 
 import adminRoutes from "./routes/admin.js";
@@ -19,6 +20,7 @@ mongoose
     console.log("error connecting to database:", e);
   });
 
+app.use(cors());
 app.use(express.json());
 app.use("/auth", adminRoutes);
 app.use("/student", studentRoutes);
