@@ -1,6 +1,5 @@
 body {
   margin: 0;
-  display: grid;
   background-color: #e5e5e5;
 }
 
@@ -8,6 +7,7 @@ p {
   margin: 0;
 }
 
+/* login page */
 .login-page {
   display: flex;
   flex-direction: column;

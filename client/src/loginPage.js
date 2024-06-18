@@ -1,4 +1,6 @@
 import axios from "axios";
+import { clearPage } from "./clearPage";
+import { createDashboard } from "./createDashboard";
 
 export const handleLogin = () => {
   const loginForm = document.querySelector(".login-form");
@@ -17,6 +19,8 @@ export const handleLogin = () => {
       .then((res) => {
         console.log("Refresh Token:", res.data.refresh_token);
         console.log("Access Token:", res.data.access_token);
+        clearPage();
+        createDashboard();
       })
       .catch((err) => {
         console.log("error response: ", err.response);
