@@ -37,3 +37,37 @@ export const downloadOfferLetter = async () => {
     });
   });
 };
+
+export const sendOfferLetter = async () => {
+  const sendLetterBtns = document.querySelectorAll(".send-btn");
+
+  sendLetterBtns.forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+
+      const { id } = e.target.dataset;
+      const accessToken = localStorage.getItem("accessToken");
+
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/offer-letter/send/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          console.log(response.data.message);
+          alert("Email sent successfully.");
+        } else {
+          console.error("Failed to send email");
+          alert("Failed to send email.");
+        }
+      } catch (err) {
+        console.log("Error: ", err.response);
+      }
+    });
+  });
+};

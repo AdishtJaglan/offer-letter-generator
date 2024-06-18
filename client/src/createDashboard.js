@@ -7,7 +7,7 @@ import downloadIcon from "./images/download.svg";
 import sendIcon from "./images/send.svg";
 import updateIcon from "./images/update.svg";
 import viewIcon from "./images/view.svg";
-import { downloadOfferLetter } from "./handleDashboardEvent";
+import { downloadOfferLetter, sendOfferLetter } from "./handleDashboardEvent";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -164,4 +164,5 @@ export const createDashboard = async () => {
   }
 
   downloadOfferLetter();
+  sendOfferLetter();
 };
