@@ -74,10 +74,13 @@
 }
 
 .main-content {
-  background-color: #f5ebe0;
+  background-color: white;
   grid-row: 2 / 3;
   grid-column: 2 / 3;
   transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 body.minimized {
@@ -139,6 +142,7 @@ ul {
   height: 2.5vh;
   border-radius: 18px;
   padding: 1%;
+  background-color: #e5e5e5;
 }
 
 .nav {
@@ -197,7 +201,7 @@ ul li:hover {
 
 /* main content */
 table {
-  width: 100%;
+  width: 95%;
   border-collapse: collapse;
 }
 
@@ -215,3 +219,41 @@ table th {
 table button {
   background-color: #d0d0d0;
 }
+
+.view-btn,
+.update-btn,
+.send-btn,
+.download-btn {
+  border: 1px solid #d0d0d0;
+  border-radius: 3px;
+  background-color: white;
+  cursor: pointer;
+  width: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-btn:hover,
+.update-btn:hover,
+.send-btn:hover,
+.download-btn:hover {
+  background-color: #d0d0d0;
+}
+
+.table-icons {
+  width: 70%;
+}
+
+.view-btn,
+.download-btn {
+  background-color: #a7c957;
+  border: 1px solid #a7c957ba;
+}
+
+.update-btn,
+.send-btn {
+  background-color: #06d6a0;
+  border:1px solid #06d69eb2
+}
+

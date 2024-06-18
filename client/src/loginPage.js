@@ -17,8 +17,11 @@ export const handleLogin = () => {
         password: userPassword.value,
       })
       .then((res) => {
-        console.log("Refresh Token:", res.data.refresh_token);
-        console.log("Access Token:", res.data.access_token);
+        let accessToken = res.data.access_token;
+        let refreshToken = res.data.refresh_token;
+
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
         clearPage();
         createDashboard();
       })
