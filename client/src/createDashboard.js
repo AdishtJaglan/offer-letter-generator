@@ -7,6 +7,15 @@ import downloadIcon from "./images/download.svg";
 import sendIcon from "./images/send.svg";
 import updateIcon from "./images/update.svg";
 import viewIcon from "./images/view.svg";
+import { downloadOfferLetter } from "./handleDashboardEvent";
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  return `${day}-${month}-${year}`;
+};
 
 export const createDashboard = async () => {
   const body = document.querySelector("body");
@@ -114,13 +123,37 @@ export const createDashboard = async () => {
           <td>${index + 1}</td>
           <td>${student.name}</td>
           <td>${student.domain}</td>
-          <td>${student.dateOfJoining}</td>
-          <td>${student.dateOfCompletion}</td>
+          <td>${formatDate(student.dateOfJoining)}</td>
+          <td>${formatDate(student.dateOfCompletion)}</td>
           <td>${student.refNo}</td>
-          <td><button class="view-btn"><img class="table-icons" src="${viewIcon}" alt="View"></button></td>
-          <td><button class="update-btn"><img class="table-icons" src="${updateIcon}" alt="Update"></button></td>
-          <td><button class="send-btn"><img class="table-icons" src="${sendIcon}" alt="Send"></button></td>
-          <td><button class="download-btn"><img class="table-icons" src="${downloadIcon}" alt="Download"></button></td>
+          <td>
+            <button data-id="${student._id}" class="view-btn">
+              <img data-id="${
+                student._id
+              }" class="table-icons" src="${viewIcon}" alt="View">
+            </button>
+          </td>
+          <td>
+            <button data-id="${student._id}" class="update-btn">
+              <img data-id="${
+                student._id
+              }" class="table-icons" src="${updateIcon}" alt="Update">
+            </button>
+          </td>
+          <td>
+            <button data-id="${student._id}" class="send-btn">
+              <img data-id="${
+                student._id
+              }" class="table-icons" src="${sendIcon}" alt="Send">
+            </button>
+          </td>
+          <td>
+            <button data-id="${student._id}" class="download-btn">
+              <img data-id="${
+                student._id
+              }" class="table-icons" src="${downloadIcon}" alt="Download">
+            </button>
+          </td>
         `;
 
         tableBody.appendChild(row);
@@ -129,4 +162,6 @@ export const createDashboard = async () => {
       console.error("Error fetching student data:", error);
     }
   }
+
+  downloadOfferLetter();
 };
