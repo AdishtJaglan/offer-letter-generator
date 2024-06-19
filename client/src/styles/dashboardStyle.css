@@ -256,3 +256,66 @@ table button {
   background-color: #06d6a0;
   border: 1px solid #06d69eb2;
 }
+
+/* update student dialog */
+.update-student {
+  width: 25vw;
+  height: 65vh;
+
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+}
+
+.update-student::backdrop {
+  background-color: #000000b3;
+}
+
+.update-student-container {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  justify-content: center;
+  padding: 6px;
+}
+
+.form-row input {
+  width: 97%;
+  height: 50%;
+
+  outline: none;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  padding: 4px;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.btns button {
+  width: 40%;
+  height: 50%;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.btns button:hover {
+  background-color: #d0d0d0;
+}
+
+.form-row label {
+  font-size: 1.2em;
+  font-weight: 600;
+  padding: 6px;
+}

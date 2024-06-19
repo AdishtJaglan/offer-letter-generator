@@ -28,7 +28,7 @@ router.get("/:id", verifyToken, getOneStudent);
 //@desc update student info
 //@auth required
 //@route PUT /student/:id
-router.put("/:id", verifyToken, validateStudent, updateStudent);
+router.put("/:id", verifyToken, updateStudent);
 
 //@desc delete a student
 //@auth required

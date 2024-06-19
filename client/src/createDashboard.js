@@ -7,7 +7,11 @@ import downloadIcon from "./images/download.svg";
 import sendIcon from "./images/send.svg";
 import updateIcon from "./images/update.svg";
 import viewIcon from "./images/view.svg";
-import { downloadOfferLetter, sendOfferLetter } from "./handleDashboardEvent";
+import {
+  downloadOfferLetter,
+  sendOfferLetter,
+  updateStudentInfo,
+} from "./handleDashboardEvent";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -95,6 +99,41 @@ export const createDashboard = async () => {
         <tbody id="studentTableBody">
         </tbody>
       </table>
+    </div>  
+
+    <dialog class="update-student">
+      <div class="update-student-container">
+        <div class="form-row">
+          <label for="name">name:</label>
+          <input type="text" id="name" />
+        </div>
+
+        <div class="form-row">
+          <label for="student-email">email:</label>
+          <input type="email" id="student-email" />
+        </div>
+
+        <div class="form-row">
+          <label for="dateOfJoining">date of joining:</label>
+          <input type="date" id="dateOfJoining" />
+        </div>
+
+        <div class="form-row">
+          <label for="dateOfCompletion">date of completion:</label>
+          <input type="date" id="dateOfCompletion" />
+        </div>
+
+        <div class="form-row">
+          <label for="domain">domain:</label>
+          <input type="text" id="domain" />
+        </div>
+
+        <div class="btns">
+          <button class="update-student-btn">udpate</button>
+          <button class="close-btn">close</button>
+        </div>
+      </div>
+    </dialog>
     `;
 
   document
@@ -165,4 +204,5 @@ export const createDashboard = async () => {
 
   downloadOfferLetter();
   sendOfferLetter();
+  updateStudentInfo();
 };
