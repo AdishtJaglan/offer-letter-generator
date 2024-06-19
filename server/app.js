@@ -38,7 +38,7 @@ app.use((err, req, res, next) => {
     message = "Something went wrong with the server.",
   } = err;
 
-  res.statusCode(statusCode).json({ error: message });
+  res.status(statusCode).json({ error: message });
 });
 
 app.listen(3000, () => {

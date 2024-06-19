@@ -1,6 +1,15 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
+const CounterSchema = new Schema({
+  sequenceValue: {
+    type: Number,
+    default: 824562,
+  },
+});
+
+const Counter = mongoose.model("Counter", CounterSchema);
+
 const StudentSchema = new Schema({
   name: {
     type: String,
@@ -23,7 +32,6 @@ const StudentSchema = new Schema({
   paid: {
     type: String,
     enum: ["paid", "unpaid"],
-    required: true,
   },
   domain: {
     type: String,
@@ -31,9 +39,34 @@ const StudentSchema = new Schema({
   },
   refNo: {
     type: String,
-    required: true,
     unique: true,
   },
+});
+
+StudentSchema.pre("save", async function (next) {
+  if (this.isNew) {
+    try {
+      const counter = await Counter.findOneAndUpdate(
+        {},
+        { $inc: { sequenceValue: 1 } },
+        { new: true, upsert: true }
+      );
+
+      const currentYear = new Date().getFullYear();
+      const domainInitials = this.domain
+        .split(" ")
+        .map((word) => word[0])
+        .join("")
+        .toUpperCase();
+      const sequenceNumber = counter.sequenceValue.toString().padStart(6, "0");
+
+      this.refNo = `SMM${currentYear}${domainInitials}${sequenceNumber}`;
+    } catch (e) {
+      return next(e);
+    }
+  }
+
+  next();
 });
 
 const Student = mongoose.model("Student", StudentSchema);

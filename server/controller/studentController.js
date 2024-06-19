@@ -6,18 +6,9 @@ import AsyncHandler from "../utility/asyncHandler.js";
 //@auth required
 //@route POST /student/create
 export const createStudent = AsyncHandler(async (req, res) => {
-  const { name, email, dateOfJoining, dateOfCompletion, paid, domain, refNo } =
-    req.body;
+  const { name, email, dateOfJoining, dateOfCompletion, domain } = req.body;
 
-  if (
-    !name ||
-    !email ||
-    !dateOfJoining ||
-    !dateOfCompletion ||
-    !paid ||
-    !domain ||
-    !refNo
-  ) {
+  if (!name || !email || !dateOfJoining || !dateOfCompletion || !domain) {
     throw new ExpressError("All fields are mandatory.", 400);
   }
 
@@ -32,9 +23,7 @@ export const createStudent = AsyncHandler(async (req, res) => {
     email,
     dateOfJoining,
     dateOfCompletion,
-    paid,
     domain,
-    refNo,
   });
 
   await student.save();

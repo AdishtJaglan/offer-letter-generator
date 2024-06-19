@@ -5,16 +5,14 @@ const validateStudentSchema = Joi.object({
   email: Joi.string().email().required(),
   dateOfJoining: Joi.date().required(),
   dateOfCompletion: Joi.date().required(),
-  paid: Joi.string().valid("paid", "unpaid").required(),
   domain: Joi.string().required(),
-  refNo: Joi.string().required(),
 });
 
 const validateStudent = (req, res, next) => {
-  const { error } = validateStudentSchema.valid(req.body);
+  const { error } = validateStudentSchema.validate(req.body);
 
   if (error) {
-    return res.status(400).json({ error: error.message });
+    return res.status(400).json({ error: error.details[0].message });
   }
 
   next();
