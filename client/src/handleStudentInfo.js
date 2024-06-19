@@ -106,3 +106,67 @@ export const updateStudentInfo = async () => {
     });
   });
 };
+
+export const viewStudentInfo = async () => {
+  const viewStudentBtn = document.querySelectorAll(".view-btn");
+
+  viewStudentBtn.forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+
+      const { id } = e.target.dataset;
+      const accessToken = localStorage.getItem("accessToken");
+
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/student/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (response.status === 200) {
+          const studentName = document.querySelector(
+            ".view-student-info-container p:nth-child(1)"
+          );
+          const studentEmail = document.querySelector(
+            ".view-student-info-container p:nth-child(2)"
+          );
+          const studentDates = document.querySelector(
+            ".view-student-info-container p:nth-child(3)"
+          );
+          const studentDomain = document.querySelector(
+            ".view-student-info-container p:nth-child(4)"
+          );
+          const studentRefNo = document.querySelector(
+            ".view-student-info-container p:nth-child(5)"
+          );
+          const studentInfoModal = document.querySelector(".view-student-info");
+          const closeStudentBtn = document.querySelector(
+            ".close-student-info-btn"
+          );
+
+          studentName.textContent = response.data.student_info.name;
+          studentEmail.textContent = response.data.student_info.email;
+          studentDates.textContent = `${formatDate(
+            response.data.student_info.dateOfJoining
+          )} to ${formatDate(response.data.student_info.dateOfCompletion)}`;
+          studentDomain.textContent = response.data.student_info.domain;
+          studentRefNo.textContent = response.data.student_info.refNo;
+
+          studentInfoModal.showModal();
+
+          closeStudentBtn.addEventListener("click", () => {
+            studentInfoModal.close();
+          });
+        } else {
+          console.error("Failed to get student information");
+        }
+      } catch (err) {
+        console.log("Error fetching student info: ", err.message);
+      }
+    });
+  });
+};

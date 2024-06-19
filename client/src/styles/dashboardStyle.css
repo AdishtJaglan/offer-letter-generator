@@ -319,3 +319,57 @@ table button {
   font-weight: 600;
   padding: 6px;
 }
+
+/* student info modal */
+.view-student-info {
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  height: 30vh;
+  width: 15vw;
+}
+
+.view-student-info::backdrop {
+  background-color: #000000b3;
+}
+
+.view-student-info-container {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+}
+
+.view-student-info-container p {
+  margin: 5px;
+  margin-left: 12px;
+}
+
+.view-student-info-container p:nth-child(1) {
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.view-student-info-container p:nth-child(2),
+.view-student-info-container p:nth-child(3),
+.view-student-info-container p:nth-child(4),
+.view-student-info-container p:nth-child(5) {
+  font-size: 1em;
+  font-weight: 100;
+}
+
+.close-student-info-btn {
+  width: 70%;
+  height: 15%;
+  outline: none;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.close-student-info-btn:hover {
+  background-color: #d0d0d0;
+}

@@ -7,7 +7,7 @@ import downloadIcon from "./images/download.svg";
 import sendIcon from "./images/send.svg";
 import updateIcon from "./images/update.svg";
 import viewIcon from "./images/view.svg";
-import { updateStudentInfo } from "./handleStudentInfo";
+import { updateStudentInfo, viewStudentInfo } from "./handleStudentInfo";
 import { downloadOfferLetter, sendOfferLetter } from "./handleOfferLetter";
 
 const formatDate = (dateString) => {
@@ -131,6 +131,18 @@ export const createDashboard = async () => {
         </div>
       </div>
     </dialog>
+
+    <dialog class="view-student-info">
+      <div class="view-student-info-container">
+        <p>Adisht Jaglan</p>
+        <p>adisht7524@gmail.com</p>
+        <p>12-04-2022 to 12-05-2022</p>
+        <p>Web Development</p>
+        <p>SMPA12DEF456</p>
+
+        <button class="close-student-info-btn">close</button>
+      </div>
+    </dialog>
     `;
 
   document
@@ -202,4 +214,5 @@ export const createDashboard = async () => {
   downloadOfferLetter();
   sendOfferLetter();
   updateStudentInfo();
+  viewStudentInfo();
 };
