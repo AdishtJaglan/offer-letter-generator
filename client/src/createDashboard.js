@@ -7,11 +7,8 @@ import downloadIcon from "./images/download.svg";
 import sendIcon from "./images/send.svg";
 import updateIcon from "./images/update.svg";
 import viewIcon from "./images/view.svg";
-import {
-  downloadOfferLetter,
-  sendOfferLetter,
-  updateStudentInfo,
-} from "./handleDashboardEvent";
+import { updateStudentInfo } from "./handleStudentInfo";
+import { downloadOfferLetter, sendOfferLetter } from "./handleOfferLetter";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
