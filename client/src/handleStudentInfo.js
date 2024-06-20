@@ -80,8 +80,6 @@ export const updateStudentInfo = async () => {
           ).toISOString(),
         };
 
-        console.log(updatedStudentInfo);
-
         try {
           const response = await axios.put(
             `http://localhost:3000/student/${id}`,
@@ -168,5 +166,80 @@ export const viewStudentInfo = async () => {
         console.log("Error fetching student info: ", err.message);
       }
     });
+  });
+};
+
+export const createStudent = async () => {
+  const openStudentBtn = document.querySelector(".open-student-dialog");
+  const createStudentModal = document.querySelector(".create-student");
+  const createStudentBtn = document.querySelector(".create-student-btn");
+  const accessToken = localStorage.getItem("accessToken");
+
+  openStudentBtn.addEventListener("click", () => {
+    createStudentModal.showModal();
+
+    const closeStudentBtn = document.querySelector(".close-student-btn");
+    closeStudentBtn.addEventListener("click", () => {
+      createStudentModal.close();
+    });
+  });
+
+  createStudentBtn.addEventListener("click", async (e) => {
+    e.stopPropagation();
+
+    const studentName = document.querySelector("#create_name").value;
+    const studentEmail = document.querySelector("#create_email").value;
+    const studentDateOfJoining = document.querySelector(
+      "#create_dateOfJoining"
+    ).value;
+    const studentDateOfCompletion = document.querySelector(
+      "#create_dateOfCompletion"
+    ).value;
+    const studentDomain = document.querySelector("#create_domain").value;
+
+    if (!studentDateOfCompletion || !studentDateOfJoining) {
+      console.log(studentDateOfCompletion);
+      console.log(studentDateOfJoining);
+      console.log(studentEmail);
+      console.log(studentDomain);
+      console.error("Invalid dates.");
+      return;
+    }
+    const createdStudentInfo = {
+      name: studentName,
+      email: studentEmail,
+      domain: studentDomain,
+      dateOfJoining: new Date(studentDateOfJoining).toISOString(),
+      dateOfCompletion: new Date(studentDateOfCompletion).toISOString(),
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/student/create",
+        createdStudentInfo,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log("Student created successfully: ", response.data);
+
+        document.querySelector("#create_name").value = "";
+        document.querySelector("#create_email").value = "";
+        document.querySelector("#create_domain").value = "";
+        document.querySelector("#create_dateOfJoining").value = "";
+        document.querySelector("#create_dateOfCompletion").value = "";
+
+        createStudentModal.close();
+      } else {
+        console.error("Failed to create student:", response.data);
+      }
+    } catch (err) {
+      console.log("Error reaching create student endpoint: ", err.message);
+    }
   });
 };

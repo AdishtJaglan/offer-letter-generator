@@ -373,3 +373,74 @@ table button {
 .close-student-info-btn:hover {
   background-color: #d0d0d0;
 }
+
+/* create student form */
+.create-student {
+  width: 25vw;
+  height: 50vh;
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+}
+
+.create-student-container {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  justify-content: center;
+}
+
+.date-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 5%;
+}
+
+.student-btns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.row input,
+#create_email {
+  width: 95%;
+  height: 40%;
+  padding: 5px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  outline: none;
+}
+
+.date-row input {
+  width: 90%;
+  height: 100%;
+  padding: 5px;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  outline: none;
+}
+
+.student-btns button {
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  width: 40%;
+  height: 50%;
+}
+
+.student-btns button:hover {
+  background-color: #d0d0d0;
+}
+
+.create-student-container label {
+  font-size: 1.2em;
+  font-weight: 600;
+}

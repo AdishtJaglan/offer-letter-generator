@@ -7,7 +7,11 @@ import downloadIcon from "./images/download.svg";
 import sendIcon from "./images/send.svg";
 import updateIcon from "./images/update.svg";
 import viewIcon from "./images/view.svg";
-import { updateStudentInfo, viewStudentInfo } from "./handleStudentInfo";
+import {
+  createStudent,
+  updateStudentInfo,
+  viewStudentInfo,
+} from "./handleStudentInfo";
 import { downloadOfferLetter, sendOfferLetter } from "./handleOfferLetter";
 
 const formatDate = (dateString) => {
@@ -54,7 +58,7 @@ export const createDashboard = async () => {
         </div>
 
         <ul>
-          <li>New</li>
+          <li class="open-student-dialog">New</li>
           <li>Update</li>
           <li>Manage</li>
         </ul>
@@ -143,6 +147,52 @@ export const createDashboard = async () => {
         <button class="close-student-info-btn">close</button>
       </div>
     </dialog>
+
+    <dialog class="create-student">
+      <div class="create-student-container">
+        <div class="row">
+          <label for="create_name">name:</label>
+          <input type="text" id="create_name" name="name" required />
+        </div>
+
+        <div class="row">
+          <label for="create_email">email:</label>
+          <input type="email" id="create_email" name="email" required />
+        </div>
+
+        <div class="date-row">
+          <div class="dateOfJoining-group">
+            <label for="create_dateOfJoining">date of joining:</label>
+            <input
+              type="date"
+              name="dateOfJoining"
+              id="create_dateOfJoining"
+              required
+            />
+          </div>
+
+          <div class="dateOfCompletion-group">
+            <label for="create_dateOfCompletion">date of completion:</label>
+            <input
+              type="date"
+              name="dateOfCompletion"
+              id="create_dateOfCompletion"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="row">
+          <label for="create_domain">domain:</label>
+          <input type="text" id="create_domain" name="domain" required />
+        </div>
+
+        <div class="student-btns">
+          <button class="create-student-btn">submit</button>
+          <button class="close-student-btn">close</button>
+        </div>
+      </div>
+    </dialog>
     `;
 
   document
@@ -215,4 +265,5 @@ export const createDashboard = async () => {
   sendOfferLetter();
   updateStudentInfo();
   viewStudentInfo();
+  createStudent();
 };
