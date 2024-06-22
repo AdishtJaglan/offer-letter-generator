@@ -2,12 +2,7 @@ import "./styles/dashboardStyle.css";
 import searchIcon from "./images/magnify.svg";
 import logoutIcon from "./images/logout.svg";
 import bellIcon from "./images/bell.svg";
-import {
-  createStudent,
-  updateStudentInfo,
-  viewStudentInfo,
-} from "./handleStudentInfo";
-import { downloadOfferLetter, sendOfferLetter } from "./handleOfferLetter";
+import { createStudent } from "./handleStudentInfo";
 import { getStudents, logoutEvent, toggleSidebar } from "./handleDashboard";
 
 export const createDashboard = async () => {
@@ -208,10 +203,6 @@ export const createDashboard = async () => {
 
   getStudents();
   toggleSidebar();
-  downloadOfferLetter();
-  sendOfferLetter();
-  updateStudentInfo();
-  viewStudentInfo();
   createStudent();
   logoutEvent();
 };
