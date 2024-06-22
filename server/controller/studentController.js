@@ -35,13 +35,17 @@ export const createStudent = AsyncHandler(async (req, res) => {
   }
 });
 
-//@desc get all student info, can add a query string ?limit=N to get last N entries into the db
+//@desc get all student info, can add query strings ?limit=N and ?skip=M to get N entries starting from M
 //@auth required
 //@route GET /student/info
 export const getStudents = AsyncHandler(async (req, res) => {
   try {
     const limit = parseInt(req.query.limit) || 0;
-    const students = await Student.find().sort({ createdAt: -1 }).limit(limit);
+    const skip = parseInt(req.query.skip) || 0;
+    const students = await Student.find()
+      .sort({ createdAt: -1 })
+      .skip(skip)
+      .limit(limit);
 
     res.status(200).json(students);
   } catch (err) {
