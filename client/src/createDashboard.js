@@ -13,6 +13,7 @@ import {
   viewStudentInfo,
 } from "./handleStudentInfo";
 import { downloadOfferLetter, sendOfferLetter } from "./handleOfferLetter";
+import { logoutEvent } from "./handleDashboardButtons";
 
 const formatDate = (dateString) => {
   const date = new Date(dateString);
@@ -284,4 +285,5 @@ export const createDashboard = async () => {
   updateStudentInfo();
   viewStudentInfo();
   createStudent();
+  logoutEvent();
 };

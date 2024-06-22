@@ -64,6 +64,10 @@
   justify-content: flex-start;
 }
 
+.sidebar p {
+  cursor: pointer;
+}
+
 /* header */
 .header {
   background-color: white;
