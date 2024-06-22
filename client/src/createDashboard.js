@@ -182,10 +182,28 @@ export const createDashboard = async () => {
           </div>
         </div>
 
-        <div class="row">
+         <div class="row">
           <label for="create_domain">domain:</label>
-          <input type="text" id="create_domain" name="domain" required />
-        </div>
+          <input list="domains" id="create_domain" name="domain" placeholder="Select or type a domain" required />
+          <datalist id="domains">
+            <option value="Marketing"></option>
+            <option value="Social worker"></option>
+            <option value="Public Relations"></option>
+            <option value="Campus Ambassador"></option>
+            <option value="Machine Learning"></option>
+            <option value="Data Science"></option>
+            <option value="Artificial Intelligence"></option>
+            <option value="Web Developer"></option>
+            <option value="Fundraising Coordinator"></option>
+            <option value="Volunteer"></option>
+            <option value="Coding Tutor"></option>
+            <option value="Human Resource Management"></option>
+            <option value="Social Media Marketing"></option>
+            <option value="Digital Marketing"></option>
+            <option value="Business Development Associate"></option>
+            <option value="Content Writer"></option>
+          </datalist>
+         </div>
 
         <div class="student-btns">
           <button class="create-student-btn">submit</button>
