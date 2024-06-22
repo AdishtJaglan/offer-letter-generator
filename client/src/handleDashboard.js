@@ -22,22 +22,34 @@ export const logoutEvent = () => {
 
 export const getStudents = async () => {
   const accessToken = localStorage.getItem("accessToken");
+  const tableBody = document.getElementById("studentTableBody");
+  const previousPageBtn = document.querySelector(".previous-page");
+  const nextPageBtn = document.querySelector(".next-page");
 
-  if (accessToken) {
-    try {
-      const response = await axios.get("http://localhost:3000/student/info", {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+  let currentPage = 0;
+  const limit = 10;
 
-      const students = response.data;
-      const tableBody = document.getElementById("studentTableBody");
+  async function fetchStudents(page) {
+    const skip = page * limit;
 
-      students.forEach((student, index) => {
-        const row = document.createElement("tr");
+    if (accessToken) {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/student/info?limit=${limit}&skip=${skip}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
 
-        row.innerHTML = `
+        const students = response.data;
+        tableBody.innerHTML = "";
+
+        students.forEach((student, index) => {
+          const row = document.createElement("tr");
+
+          row.innerHTML = `
           <td>${index + 1}</td>
           <td>${student.name}</td>
           <td>${student.domain}</td>
@@ -74,12 +86,30 @@ export const getStudents = async () => {
           </td>
         `;
 
-        tableBody.appendChild(row);
-      });
-    } catch (error) {
-      console.error("Error fetching student data:", error);
+          tableBody.appendChild(row);
+        });
+
+        previousPageBtn.disabled = currentPage === 0;
+        nextPageBtn.disabled = students.length < limit;
+      } catch (error) {
+        console.error("Error fetching student data:", error);
+      }
     }
   }
+
+  fetchStudents(currentPage);
+
+  nextPageBtn.addEventListener("click", () => {
+    currentPage++;
+    fetchStudents(currentPage);
+  });
+
+  previousPageBtn.addEventListener("click", () => {
+    if (currentPage > 0) {
+      currentPage--;
+      fetchStudents(currentPage);
+    }
+  });
 };
 
 export const toggleSidebar = () => {
