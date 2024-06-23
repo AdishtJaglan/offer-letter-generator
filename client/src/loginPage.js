@@ -20,11 +20,12 @@ export const handleLogin = () => {
         let accessToken = res.data.access_token;
         let refreshToken = res.data.refresh_token;
         let adminName = res.data.name;
+        let adminId = res.data.id;
 
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
         clearPage();
-        createDashboard(adminName);
+        createDashboard(adminName, adminId);
       })
       .catch((err) => {
         console.log("error response: ", err.response);

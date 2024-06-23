@@ -539,3 +539,79 @@ table button {
   font-size: 0.9em;
   color: #5f5f5f;
 }
+
+/* update admin modal */
+.update-admin-modal {
+  width: 20vw;
+  height: 50vh;
+
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  outline: none;
+}
+
+.update-admin-modal-container {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: repeat(4, 1fr) 0.8fr;
+}
+
+.update-admin-modal-container div {
+  padding: 6px;
+}
+
+.update-admin-row {
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+  justify-content: center;
+}
+
+.update-admin-row input {
+  width: 97%;
+  height: 100%;
+  outline: none;
+  border: 1px solid #d0d0d0;
+  border-radius: 5px;
+}
+
+.update-admin-row label {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.update-admin-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.update-admin-heading span {
+  cursor: pointer;
+  font-size: 1.2em;
+}
+
+.update-admin-heading span:hover {
+  color: #545454;
+}
+
+.update-admin-heading p {
+  font-size: 1.6em;
+  font-weight: 900;
+}
+
+.update-admin-info-btn {
+  place-self: center;
+  height: 50%;
+  width: 60%;
+
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+}
+
+.update-admin-info-btn:hover {
+  background-color: #d0d0d0;
+}

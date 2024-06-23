@@ -18,8 +18,7 @@ export const registerAdmin = AsyncHandler(async (req, res) => {
     const checkAdmin = await Admin.findOne({ email });
 
     if (checkAdmin) {
-      res.status(400);
-      throw new Error("User already exists");
+      throw new ExpressError("User already exists", 403);
     }
 
     const admin = new Admin({
@@ -58,7 +57,7 @@ export const loginAdmin = AsyncHandler(async (req, res) => {
     const comparePassword = await bcrypt.compare(password, admin.password);
 
     if (!comparePassword) {
-      res.status(403).json({ message: "Invalid credentials." });
+      return res.status(403).json({ message: "Invalid credentials." });
     }
 
     const accessToken = jwt.sign(
@@ -84,6 +83,7 @@ export const loginAdmin = AsyncHandler(async (req, res) => {
     res.json({
       message: "Login successful",
       name: admin.name,
+      id: admin.id,
       refresh_token: refreshToken,
       access_token: accessToken,
     });

@@ -4,9 +4,9 @@ import logoutIcon from "./images/logout.svg";
 import bellIcon from "./images/bell.svg";
 import { createStudent } from "./handleStudentInfo";
 import { getStudents, logoutEvent, toggleSidebar } from "./handleDashboard";
-import { showAllAdmins } from "./handleAdmin";
+import { showAllAdmins, updateAdminInfo } from "./handleAdmin";
 
-export const createDashboard = async (adminName) => {
+export const createDashboard = async (adminName, adminId) => {
   const body = document.querySelector("body");
 
   body.innerHTML = `
@@ -43,7 +43,7 @@ export const createDashboard = async (adminName) => {
 
         <ul>
           <li class="open-student-dialog">New</li>
-          <li>Update</li>
+          <li data-id="${adminId}" class="update-admin">Update</li>
           <li>Manage</li>
         </ul>
       </div>
@@ -207,4 +207,5 @@ export const createDashboard = async (adminName) => {
   createStudent();
   logoutEvent();
   showAllAdmins();
+  updateAdminInfo();
 };
