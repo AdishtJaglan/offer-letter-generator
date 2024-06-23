@@ -7,7 +7,7 @@ const validateAdminSchema = Joi.object({
 });
 
 const validateAdmin = (req, res, next) => {
-  const { error } = validateAdminSchema.valid(req.body);
+  const { error } = validateAdminSchema.validate(req.body);
 
   if (error) {
     return res.status(400).json({ error: error.message });
