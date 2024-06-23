@@ -65,6 +65,11 @@ export const createDashboard = async () => {
     </div>
 
     <div class="main-content">
+      <div class="pagination-buttons">
+        <button class="previous-page">previous</button>
+        <button class="next-page">next</button>
+      </div>
+
       <table>
         <thead>
           <tr>
@@ -83,11 +88,6 @@ export const createDashboard = async () => {
         <tbody id="studentTableBody">
         </tbody>
       </table>
-
-      <div class="pagination-buttons">
-        <button class="previous-page">previous</button>
-        <button class="next-page">next</button>
-      </div>
     </div>  
 
     <dialog class="update-student">
