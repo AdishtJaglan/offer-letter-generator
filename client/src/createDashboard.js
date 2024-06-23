@@ -4,8 +4,9 @@ import logoutIcon from "./images/logout.svg";
 import bellIcon from "./images/bell.svg";
 import { createStudent } from "./handleStudentInfo";
 import { getStudents, logoutEvent, toggleSidebar } from "./handleDashboard";
+import { showAllAdmins } from "./handleAdmin";
 
-export const createDashboard = async () => {
+export const createDashboard = async (adminName) => {
   const body = document.querySelector("body");
 
   body.innerHTML = `
@@ -23,7 +24,7 @@ export const createDashboard = async () => {
             alt=""
             class="profile-picture"
           />
-          <p>Adisht Jaglan</p>
+          <p>${adminName}</p>
         </div>
       </div>
 
@@ -36,7 +37,7 @@ export const createDashboard = async () => {
           />
           <div class="greeting">
             <p>Hi there,</p>
-            <p>Adisht Jaglan</p>
+            <p>${adminName}</p>
           </div>
         </div>
 
@@ -53,7 +54,7 @@ export const createDashboard = async () => {
         <span>&#9776;</span>
       </button>
 
-      <p>
+      <p class="search-admin">
         <span><img src="${searchIcon}" alt="" class="search-icon" /></span
         ><span class="text">search admin</span>
       </p>
@@ -205,4 +206,5 @@ export const createDashboard = async () => {
   toggleSidebar();
   createStudent();
   logoutEvent();
+  showAllAdmins();
 };

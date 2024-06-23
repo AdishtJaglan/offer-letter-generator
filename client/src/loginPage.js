@@ -19,11 +19,12 @@ export const handleLogin = () => {
       .then((res) => {
         let accessToken = res.data.access_token;
         let refreshToken = res.data.refresh_token;
+        let adminName = res.data.name;
 
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
         clearPage();
-        createDashboard();
+        createDashboard(adminName);
       })
       .catch((err) => {
         console.log("error response: ", err.response);
