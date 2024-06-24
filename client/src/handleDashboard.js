@@ -15,7 +15,7 @@ const formatDate = (dateString) => {
 };
 
 export const logoutEvent = () => {
-  const logoutBtn = document.querySelector(".sidebar p:nth-child(3)");
+  const logoutBtn = document.querySelector(".sidebar p:nth-child(4)");
 
   logoutBtn.addEventListener("click", () => {
     window.location.reload();

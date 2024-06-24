@@ -2,9 +2,10 @@ import "./styles/dashboardStyle.css";
 import searchIcon from "./images/magnify.svg";
 import logoutIcon from "./images/logout.svg";
 import bellIcon from "./images/bell.svg";
+import accountPlusIcon from "./images/account-plus-outline.svg";
 import { createStudent } from "./handleStudentInfo";
 import { getStudents, logoutEvent, toggleSidebar } from "./handleDashboard";
-import { showAllAdmins, updateAdminInfo } from "./handleAdmin";
+import { createAdmin, showAllAdmins, updateAdminInfo } from "./handleAdmin";
 
 export const createDashboard = async (adminName, adminId) => {
   const body = document.querySelector("body");
@@ -57,6 +58,11 @@ export const createDashboard = async (adminName, adminId) => {
       <p class="search-admin">
         <span><img src="${searchIcon}" alt="" class="search-icon" /></span
         ><span class="text">search admin</span>
+      </p>
+      
+      <p class="create-admin">
+        <span><img src="${accountPlusIcon}" class="add-admin"/></span>
+        <span class="text">add admin</span>
       </p>
 
       <p class="sidebar-p">
@@ -208,4 +214,5 @@ export const createDashboard = async (adminName, adminId) => {
   logoutEvent();
   showAllAdmins();
   updateAdminInfo();
+  createAdmin();
 };

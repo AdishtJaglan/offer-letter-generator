@@ -54,8 +54,9 @@
 }
 
 .logout-icon,
-.search-icon {
-  width: 25px;
+.search-icon,
+.add-admin {
+  width: 30px;
 }
 
 .sidebar-p {
@@ -400,6 +401,10 @@ table button {
   border-radius: 8px;
 }
 
+.create-student::backdrop {
+  background-color: #000000b3;
+}
+
 .create-student-container {
   height: 100%;
   width: 100%;
@@ -542,12 +547,16 @@ table button {
 
 /* update admin modal */
 .update-admin-modal {
-  width: 20vw;
+  width: 25vw;
   height: 50vh;
 
   border: 1px solid #d0d0d0;
   border-radius: 8px;
   outline: none;
+}
+
+.update-admin-modal::backdrop {
+  background-color: #000000b3;
 }
 
 .update-admin-modal-container {
@@ -583,22 +592,26 @@ table button {
   margin-bottom: 4px;
 }
 
-.update-admin-heading {
+.update-admin-heading,
+.create-admin-heading {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.update-admin-heading span {
+.update-admin-heading span,
+.create-admin-heading span {
   cursor: pointer;
   font-size: 1.2em;
 }
 
-.update-admin-heading span:hover {
+.update-admin-heading span:hover,
+.create-admin-heading span:hover {
   color: #545454;
 }
 
-.update-admin-heading p {
+.update-admin-heading p,
+.create-admin-heading p {
   font-size: 1.6em;
   font-weight: 900;
 }
@@ -614,4 +627,66 @@ table button {
 
 .update-admin-info-btn:hover {
   background-color: #d0d0d0;
+}
+
+/* create admin modal */
+.create-admin-modal {
+  width: 23vw;
+  height: 50vh;
+
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  outline: none;
+}
+
+.create-admin-modal::backdrop {
+  background-color: #000000b3;
+}
+
+.create-admin-modal-container {
+  height: 100%;
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.create-admin-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: self-start;
+}
+
+.create-admin-row input {
+  width: 93%;
+  height: 60%;
+
+  outline: none;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+}
+
+.create-admin-row label {
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.create-admin-info-btn {
+  place-self: center;
+
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+  width: 40%;
+  height: 50%;
+}
+
+.create-admin-info-btn:hover {
+  background-color: #d0d0d0;
+}
+
+.create-admin-modal-container div {
+  padding: 6px;
 }

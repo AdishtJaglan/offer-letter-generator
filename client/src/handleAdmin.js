@@ -98,6 +98,48 @@ const createUpdateAdminModal = (admin) => {
   });
 };
 
+const makeAdminModal = () => {
+  const body = document.querySelector("body");
+  const adminModal = document.createElement("dialog");
+
+  adminModal.classList.add("create-admin-modal");
+  adminModal.innerHTML = `
+    <div class="create-admin-modal-container">
+      <div class="create-admin-heading">
+        <p>Create Admin</p>
+        <span class="create-admin-close">&#10006;</span>
+      </div>
+
+      <div class="create-admin-row">
+        <label for="create_admin_name">name:</label>
+        <input type="text" name="name" id="create_admin_name" />
+      </div>
+
+      <div class="create-admin-row">
+        <label for="create_admin_email">email:</label>
+        <input type="email" name="email" id="create_admin_email" />
+      </div>
+
+      <div class="create-admin-row">
+        <label for="create_admin_password">password:</label>
+        <input type="password" name="password" id="create_admin_password" />
+      </div>
+
+      <button class="create-admin-info-btn">create</button>
+    </div>
+  `;
+
+  body.appendChild(adminModal);
+  adminModal.showModal();
+
+  const closeCreateAdminBtn = document.querySelector(".create-admin-close");
+
+  closeCreateAdminBtn.addEventListener("click", () => {
+    adminModal.remove();
+    adminModal.close();
+  });
+};
+
 export const showAllAdmins = () => {
   const searchAdmin = document.querySelector(".search-admin");
   const accessToken = localStorage.getItem("accessToken");
@@ -192,6 +234,58 @@ export const updateAdminInfo = () => {
           }
         } catch (e) {
           console.error("Error fetching update API: ", e.message);
+        }
+      }
+    });
+  });
+};
+
+export const createAdmin = async () => {
+  const showCreateAdminModal = document.querySelector(".create-admin");
+
+  showCreateAdminModal.addEventListener("click", () => {
+    makeAdminModal();
+
+    const createAdminBtn = document.querySelector(".create-admin-info-btn");
+
+    createAdminBtn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+
+      const adminModal = document.querySelector(".create-admin-modal");
+      const adminName = document.querySelector("#create_admin_name");
+      const adminEmail = document.querySelector("#create_admin_email");
+      const adminPassword = document.querySelector("#create_admin_password");
+      const accessToken = localStorage.getItem("accessToken");
+
+      const adminInfo = {
+        name: adminName.value,
+        email: adminEmail.value,
+        password: adminPassword.value,
+      };
+
+      if (accessToken) {
+        try {
+          const response = await axios.post(
+            "http://localhost:3000/auth/register",
+            adminInfo,
+            {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+
+          if (response.status === 200) {
+            adminName.value = "";
+            adminEmail.value = "";
+            adminPassword.value = "";
+
+            adminModal.remove();
+            adminModal.close();
+          }
+        } catch (e) {
+          console.error("Error creating admin: ", e.message);
         }
       }
     });
