@@ -140,6 +140,56 @@ const makeAdminModal = () => {
   });
 };
 
+const showAdminDeleteModal = (admins) => {
+  const body = document.querySelector("body");
+  const adminModal = document.createElement("dialog");
+
+  adminModal.classList.add("delete-admin-modal");
+  adminModal.innerHTML = `
+    <div class="delete-admin-modal-container">
+      <div class="delete-admin-heading">
+        <p>Admin Info</p>
+        <span class="delete-admin-close">&#10006;</span>
+      </div>
+    </div>
+  `;
+
+  body.appendChild(adminModal);
+
+  const deleteAdminModalContainer = document.querySelector(
+    ".delete-admin-modal-container"
+  );
+
+  admins.forEach((admin) => {
+    const nameP = document.createElement("p");
+    const deleteAdminBtn = document.createElement("button");
+    const adminContainer = document.createElement("div");
+
+    deleteAdminBtn.dataset.id = admin._id;
+    deleteAdminBtn.textContent = "delete";
+    deleteAdminBtn.classList.add("delete-admin-btn");
+
+    nameP.textContent = admin.name;
+    nameP.classList.add("delete-admin-name");
+    adminContainer.classList.add("delete-admin-container");
+
+    adminContainer.appendChild(nameP);
+    adminContainer.appendChild(deleteAdminBtn);
+
+    deleteAdminModalContainer.appendChild(adminContainer);
+  });
+
+  const closeButton = document.querySelector(".delete-admin-close");
+
+  adminModal.showModal();
+
+  closeButton.addEventListener("click", () => {
+    adminModal.innerHTML = "";
+    adminModal.close();
+    adminModal.remove();
+  });
+};
+
 export const showAllAdmins = () => {
   const searchAdmin = document.querySelector(".search-admin");
   const accessToken = localStorage.getItem("accessToken");
@@ -288,6 +338,61 @@ export const createAdmin = async () => {
           console.error("Error creating admin: ", e.message);
         }
       }
+    });
+  });
+};
+
+export const viewAndDeleteAdmins = () => {
+  const manageAdminBtn = document.querySelector(".manage-admins");
+
+  manageAdminBtn.addEventListener("click", async (e) => {
+    e.stopPropagation();
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (accessToken) {
+      try {
+        const response = await axios.get("http://localhost:3000/auth/info", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        const admins = response.data.admins;
+
+        showAdminDeleteModal(admins);
+      } catch (e) {
+        console.error("Error fetching admins: ", e.message);
+      }
+    }
+
+    const deleteAdminBtns = document.querySelectorAll(".delete-admin-btn");
+
+    deleteAdminBtns.forEach((btn) => {
+      btn.addEventListener("click", async (e) => {
+        e.stopPropagation();
+
+        const { id } = e.target.dataset;
+        const accessToken = localStorage.getItem("accessToken");
+
+        if (accessToken) {
+          try {
+            const response = await axios.delete(
+              `http://localhost:3000/auth/delete/${id}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${accessToken}`,
+                },
+              }
+            );
+
+            if (response.status === 200) {
+              btn.closest(".delete-admin-container").remove();
+            }
+          } catch (e) {
+            console.error("Error deleting admin: ", e.message);
+          }
+        }
+      });
     });
   });
 };

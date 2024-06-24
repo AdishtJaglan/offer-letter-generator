@@ -690,3 +690,70 @@ table button {
 .create-admin-modal-container div {
   padding: 6px;
 }
+
+/* delete admins modal */
+.delete-admin-modal {
+  width: 20vw;
+  height: 40vh;
+
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  outline: none;
+}
+
+.delete-admin-modal-container {
+  width: 100%;
+  height: 100%;
+}
+
+.delete-admin-heading {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.delete-admin-heading p {
+  font-size: 1.4em;
+  font-weight: 600;
+}
+
+.delete-admin-heading span {
+  font-size: 1.3em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.delete-admin-heading span:hover {
+  color: #545454;
+}
+
+.delete-admin-container {
+  padding: 10px;
+  margin: 12px;
+
+  width: 85%;
+  height: 10%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #d0d0d0;
+  border-radius: 4px;
+}
+
+.delete-admin-btn {
+  outline: none;
+  border: 1px solid #d0d0d0;
+  padding: 3px;
+  border-radius: 3px;
+  width: 50%;
+  height: 80%;
+}
+
+.delete-admin-btn:hover {
+  background-color: #d0d0d0;
+}

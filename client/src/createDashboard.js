@@ -5,7 +5,12 @@ import bellIcon from "./images/bell.svg";
 import accountPlusIcon from "./images/account-plus-outline.svg";
 import { createStudent } from "./handleStudentInfo";
 import { getStudents, logoutEvent, toggleSidebar } from "./handleDashboard";
-import { createAdmin, showAllAdmins, updateAdminInfo } from "./handleAdmin";
+import {
+  createAdmin,
+  showAllAdmins,
+  updateAdminInfo,
+  viewAndDeleteAdmins,
+} from "./handleAdmin";
 
 export const createDashboard = async (adminName, adminId) => {
   const body = document.querySelector("body");
@@ -45,7 +50,7 @@ export const createDashboard = async (adminName, adminId) => {
         <ul>
           <li class="open-student-dialog">New</li>
           <li data-id="${adminId}" class="update-admin">Update</li>
-          <li>Manage</li>
+          <li class="manage-admins">Manage</li>
         </ul>
       </div>
     </div>
@@ -215,4 +220,5 @@ export const createDashboard = async (adminName, adminId) => {
   showAllAdmins();
   updateAdminInfo();
   createAdmin();
+  viewAndDeleteAdmins();
 };
