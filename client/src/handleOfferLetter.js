@@ -1,4 +1,6 @@
 import axios from "axios";
+import spinnerIcon from "./images/spinner.gif";
+import sendIcon from "./images/send.svg";
 
 export const downloadOfferLetter = async () => {
   const downloadBtns = document.querySelectorAll(".download-btn");
@@ -46,9 +48,14 @@ export const sendOfferLetter = async () => {
       e.stopPropagation();
 
       const { id } = e.target.dataset;
+      const spinnerIconImg = document.querySelector(
+        `button.send-btn[data-id="${id}"] img.table-icons`
+      );
       const accessToken = localStorage.getItem("accessToken");
 
       try {
+        spinnerIconImg.src = spinnerIcon;
+
         const response = await axios.get(
           `http://localhost:3000/offer-letter/send/${id}`,
           {
@@ -60,13 +67,13 @@ export const sendOfferLetter = async () => {
 
         if (response.status === 200) {
           console.log(response.data.message);
-          alert("Email sent successfully.");
         } else {
           console.error("Failed to send email");
-          alert("Failed to send email.");
         }
       } catch (err) {
         console.log("Error: ", err.response);
+      } finally {
+        spinnerIconImg.src = sendIcon;
       }
     });
   });
