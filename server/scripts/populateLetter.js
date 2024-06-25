@@ -1,6 +1,5 @@
 import { PDFDocument, StandardFonts, setFontAndSize } from "pdf-lib";
 import fs from "fs/promises";
-import path from "path";
 
 const formatDate = (date) => {
   return new Intl.DateTimeFormat("en-US", {

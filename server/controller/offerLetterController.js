@@ -32,29 +32,28 @@ export const createPDFandSendMail = AsyncHandler(async (req, res) => {
 
   const outputPDFPath = path.join(__dirname, `../out/${student.name}.pdf`);
 
-  await populatePDF(
-    path.join(__dirname, "../template/updateOfferLetter.pdf"),
-    outputPDFPath,
-    data
-  );
-
-  const mailOptions = {
-    from: {
-      name: "Suvidha Foundation",
-      address: process.env.USER_EMAIL,
-    },
-    to: student.email,
-    subject: "Suvidha Offer Letter",
-    attachments: [
-      {
-        filename: `${student.name}.pdf`,
-        path: outputPDFPath,
-        contentType: "application/pdf",
+  await Promise.all([
+    populatePDF(
+      path.join(__dirname, "../template/updateOfferLetter.pdf"),
+      outputPDFPath,
+      data
+    ),
+    sendMail({
+      from: {
+        name: "Suvidha Foundation",
+        address: process.env.USER_EMAIL,
       },
-    ],
-  };
-
-  await sendMail(mailOptions);
+      to: student.email,
+      subject: "Suvidha Offer Letter",
+      attachments: [
+        {
+          filename: `${student.name}.pdf`,
+          path: outputPDFPath,
+          contentType: "application/pdf",
+        },
+      ],
+    }),
+  ]);
   await deleteLetter(outputPDFPath);
 
   res.status(200).json({ message: "Email sent successfully." });
