@@ -28,6 +28,7 @@ p {
   background-color: #ffffff;
   border-radius: 5px;
   border: 1px solid #d0d0d0;
+  box-shadow: 0 0 10px #00000012;
 }
 
 .top-row {
@@ -82,11 +83,13 @@ p {
 .login-button {
   width: 83%;
   cursor: pointer;
-  border: 1px solid #d0d0d0;
+  border: none;
   border-radius: 5px;
   font-size: 0.9em;
+  color: white;
+  background-color: #38b000;
 }
 
 .login-button:hover {
-  background-color: #d0d0d0;
+  background-color: #008000;
 }

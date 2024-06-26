@@ -1,6 +1,44 @@
 import axios from "axios";
 import spinnerIcon from "./images/spinner.gif";
-import sendIcon from "./images/send.svg";
+import sendIcon from "./images/email-dark.svg";
+
+const displayResultModal = (message) => {
+  const body = document.querySelector("body");
+  const resultModal = document.createElement("dialog");
+  const resultModalContainer = document.createElement("div");
+
+  body.appendChild(resultModal);
+  resultModal.appendChild(resultModalContainer);
+
+  const emailStatus = document.createElement("h2");
+  const resultP = document.createElement("p");
+  const closeModal = document.createElement("span");
+  const resultContainer = document.createElement("div");
+
+  resultContainer.appendChild(emailStatus);
+  resultContainer.appendChild(closeModal);
+
+  emailStatus.textContent = "Status of Email";
+  resultP.textContent = message;
+  closeModal.innerHTML = "&#10006;";
+
+  resultModal.classList.add("email-result-modal");
+  resultModalContainer.classList.add("email-result-container");
+  emailStatus.classList.add("email-status");
+  resultP.classList.add("email-result");
+  closeModal.classList.add("email-status-close");
+  resultContainer.classList.add("result-container");
+
+  resultModalContainer.appendChild(resultContainer);
+  resultModalContainer.appendChild(resultP);
+
+  resultModal.appendChild(resultModalContainer);
+  resultModal.showModal();
+
+  closeModal.addEventListener("click", () => {
+    resultModal.close();
+  });
+};
 
 export const downloadOfferLetter = async () => {
   const downloadBtns = document.querySelectorAll(".download-btn");
@@ -67,8 +105,12 @@ export const sendOfferLetter = async () => {
 
         if (response.status === 200) {
           console.log(response.data.message);
+          displayResultModal("Email sent successfully!");
         } else {
           console.error("Failed to send email");
+          displayResultModal(
+            "Email not sent. Check credentials and try again."
+          );
         }
       } catch (err) {
         console.log("Error: ", err.response);

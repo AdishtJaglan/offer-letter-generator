@@ -42,7 +42,7 @@ export const createDashboard = async (adminName, adminId) => {
             class="nav-profile-picture"
           />
           <div class="greeting">
-            <p>Hi there,</p>
+            <p>Hi There,</p>
             <p>${adminName}</p>
           </div>
         </div>
@@ -62,24 +62,24 @@ export const createDashboard = async (adminName, adminId) => {
 
       <p class="search-admin">
         <span><img src="${searchIcon}" alt="" class="search-icon" /></span
-        ><span class="text">search admin</span>
+        ><span class="text">Search Admin</span>
       </p>
       
       <p class="create-admin">
         <span><img src="${accountPlusIcon}" class="add-admin"/></span>
-        <span class="text">add admin</span>
+        <span class="text">Add Admin</span>
       </p>
 
       <p class="sidebar-p">
         <span><img src="${logoutIcon}" class="logout-icon" /></span
-        ><span class="text">logout</span>
+        ><span class="text">Logout</span>
       </p>
     </div>
 
     <div class="main-content">
       <div class="pagination-buttons">
-        <button class="previous-page">previous</button>
-        <button class="next-page">next</button>
+        <button class="previous-page">Previous</button>
+        <button class="next-page">Next</button>
       </div>
 
       <table>
@@ -105,64 +105,74 @@ export const createDashboard = async (adminName, adminId) => {
     <dialog class="update-student">
       <div class="update-student-container">
         <div class="form-row">
-          <label for="name">name:</label>
-          <input type="text" id="name" />
+          <label for="name">Name:</label>
+          <input type="text" id="name"/>
         </div>
 
         <div class="form-row">
-          <label for="student-email">email:</label>
+          <label for="student-email">Email:</label>
           <input type="email" id="student-email" />
         </div>
 
         <div class="form-row">
-          <label for="dateOfJoining">date of joining:</label>
+          <label for="dateOfJoining">Date of Joining:</label>
           <input type="date" id="dateOfJoining" />
         </div>
 
         <div class="form-row">
-          <label for="dateOfCompletion">date of completion:</label>
+          <label for="dateOfCompletion">Date of Completion:</label>
           <input type="date" id="dateOfCompletion" />
         </div>
 
         <div class="form-row">
-          <label for="domain">domain:</label>
+          <label for="domain">Domain:</label>
           <input type="text" id="domain" />
         </div>
 
         <div class="btns">
-          <button class="update-student-btn">udpate</button>
-          <button class="close-btn">close</button>
+          <button class="update-student-btn">Update</button>
+          <button class="close-btn">Close</button>
         </div>
       </div>
     </dialog>
 
     <dialog class="view-student-info">
       <div class="view-student-info-container">
-        <p>Adisht Jaglan</p>
-        <p>adisht7524@gmail.com</p>
-        <p>12-04-2022 to 12-05-2022</p>
-        <p>Web Development</p>
-        <p>SMPA12DEF456</p>
-
-        <button class="close-student-info-btn">close</button>
+        <div class="view-student-heading">
+          <h2>
+            Student Information
+          </h2>
+        </div>
+        <div class="student-info-row">
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+        </div>
+        <button class="close-student-info-btn">Close</button>
       </div>
     </dialog>
 
     <dialog class="create-student">
       <div class="create-student-container">
         <div class="row">
-          <label for="create_name">name:</label>
-          <input type="text" id="create_name" name="name" required />
+          <p class="create-student-heading">Create Student</p>
         </div>
 
         <div class="row">
-          <label for="create_email">email:</label>
-          <input type="email" id="create_email" name="email" required />
+          <label for="create_name">Name:</label>
+          <input type="text" id="create_name" name="name" placeholder="enter name" required />
+        </div>
+
+        <div class="row">
+          <label for="create_email">Email:</label>
+          <input type="email" id="create_email" name="email" placeholder="enter email" required />
         </div>
 
         <div class="date-row">
           <div class="dateOfJoining-group">
-            <label for="create_dateOfJoining">date of joining:</label>
+            <label for="create_dateOfJoining">Date of Joining:</label>
             <input
               type="date"
               name="dateOfJoining"
@@ -172,7 +182,7 @@ export const createDashboard = async (adminName, adminId) => {
           </div>
 
           <div class="dateOfCompletion-group">
-            <label for="create_dateOfCompletion">date of completion:</label>
+            <label for="create_dateOfCompletion">Date of Completion:</label>
             <input
               type="date"
               name="dateOfCompletion"
@@ -183,7 +193,7 @@ export const createDashboard = async (adminName, adminId) => {
         </div>
 
          <div class="row">
-          <label for="create_domain">domain:</label>
+          <label for="create_domain">Domain:</label>
           <input list="domains" id="create_domain" name="domain" placeholder="Select or type a domain" required />
           <datalist id="domains">
             <option value="Marketing"></option>
@@ -206,8 +216,8 @@ export const createDashboard = async (adminName, adminId) => {
          </div>
 
         <div class="student-btns">
-          <button class="create-student-btn">submit</button>
-          <button class="close-student-btn">close</button>
+          <button class="create-student-btn">Submit</button>
+          <button class="close-student-btn">Close</button>
         </div>
       </div>
     </dialog>

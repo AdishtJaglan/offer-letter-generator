@@ -57,21 +57,21 @@ export const createUpdateAdminModal = (admin) => {
       </div>
 
       <div class="update-admin-row">
-        <label for="admin_name">name:</label>
+        <label for="admin_name">Name:</label>
         <input type="text" name="name" id="admin_name" />
       </div>
 
       <div class="update-admin-row">
-        <label for="admin_email">email:</label>
+        <label for="admin_email">Email:</label>
         <input type="email" name="email" id="admin_email" />
       </div>
 
       <div class="update-admin-row">
-        <label for="admin_password">password:</label>
+        <label for="admin_password">Password:</label>
         <input type="password" name="password" id="admin_password" />
       </div>
 
-      <button class="update-admin-info-btn">update</button>
+      <button class="update-admin-info-btn">Update</button>
     </div>
   `;
 
@@ -109,21 +109,21 @@ export const makeAdminModal = () => {
       </div>
 
       <div class="create-admin-row">
-        <label for="create_admin_name">name:</label>
-        <input type="text" name="name" id="create_admin_name" />
+        <label for="create_admin_name">Name:</label>
+        <input type="text" name="name" id="create_admin_name" placeholder="enter name"/>
       </div>
 
       <div class="create-admin-row">
-        <label for="create_admin_email">email:</label>
-        <input type="email" name="email" id="create_admin_email" />
+        <label for="create_admin_email">Email:</label>
+        <input type="email" name="email" id="create_admin_email" placeholder="enter email"/>
       </div>
 
       <div class="create-admin-row">
-        <label for="create_admin_password">password:</label>
-        <input type="password" name="password" id="create_admin_password" />
+        <label for="create_admin_password">Password:</label>
+        <input type="password" name="password" id="create_admin_password" placeholder="enter password"/>
       </div>
 
-      <button class="create-admin-info-btn">create</button>
+      <button class="create-admin-info-btn">Create</button>
     </div>
   `;
 

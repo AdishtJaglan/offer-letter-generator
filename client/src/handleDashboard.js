@@ -1,8 +1,8 @@
 import axios from "axios";
-import downloadIcon from "./images/download.svg";
-import sendIcon from "./images/send.svg";
-import updateIcon from "./images/update.svg";
-import viewIcon from "./images/view.svg";
+import downloadIcon from "./images/download-light.svg";
+import sendIcon from "./images/email-dark.svg";
+import updateIcon from "./images/update-light.png";
+import viewIcon from "./images/search-light.svg";
 import { updateStudentInfo, viewStudentInfo } from "./handleStudentInfo";
 import { downloadOfferLetter, sendOfferLetter } from "./handleOfferLetter";
 
