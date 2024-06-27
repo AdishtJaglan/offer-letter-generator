@@ -4,6 +4,7 @@ import {
   deleteStudent,
   getOneStudent,
   getStudents,
+  searchStudentByName,
   updateStudent,
 } from "../controller/studentController.js";
 import { verifyToken } from "../middlewares/middleware.js";
@@ -15,10 +16,15 @@ const router = express.Router();
 //@route POST /student/create
 router.post("/create", verifyToken, validateStudent, createStudent);
 
-//@desc get all student info, can add a query string ?limit=N to get last N entries into the db
+//@desc get all student info, can add query strings ?limit=N and ?skip=M to get N entries starting from M
 //@auth required
-//@route GET /student/info
+//@route GET /student/info?limit=N&skip=M
 router.get("/info", verifyToken, getStudents);
+
+//@desc get information regarding one student by searching name like ?name=X where X is name
+//@auth required
+//@route GET /student/name?limit=N&skip=M
+router.get("/name", verifyToken, searchStudentByName);
 
 //@desc get a single student info
 //@auth required
