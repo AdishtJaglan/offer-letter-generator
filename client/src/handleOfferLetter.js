@@ -61,11 +61,22 @@ export const downloadOfferLetter = async () => {
           }
         );
 
+        const studentResponse = await axios.get(
+          `http://localhost:3000/student/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        const studentName = studentResponse.data.student_info.name;
+
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement("a");
 
         link.href = url;
-        link.setAttribute("download", `${id}.pdf`);
+        link.setAttribute("download", `${studentName}.pdf`);
 
         document.body.appendChild(link);
         link.click();

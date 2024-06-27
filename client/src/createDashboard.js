@@ -11,6 +11,7 @@ import {
   updateAdminInfo,
   viewAndDeleteAdmins,
 } from "./handleAdmin";
+import { handleNameSearch } from "./handleSearch";
 
 export const createDashboard = async (adminName, adminId) => {
   const body = document.querySelector("body");
@@ -221,8 +222,18 @@ export const createDashboard = async (adminName, adminId) => {
         </div>
       </div>
     </dialog>
+
+    <dialog class="display-students-dialog">
+      <div class="display-students-container">
+        <div class="display-student-header">
+          <h1>Student Info</h1>
+          <span>&#10006;</span>
+        </div>
+      </div>
+    </dialog>
     `;
 
+  handleNameSearch();
   getStudents();
   toggleSidebar();
   createStudent();
