@@ -21,7 +21,7 @@ export const createDashboard = async (adminName, adminId) => {
       <div class="user-info">
         <div class="left-info">
           <img src="${searchIcon}" alt="" class="icon" />
-          <input type="text" name="" id="search_bar" />
+          <input type="text" name="" id="search_bar" placeholder="search by name"/>
         </div>
 
         <div class="right-info">

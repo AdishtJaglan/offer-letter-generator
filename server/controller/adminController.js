@@ -67,7 +67,7 @@ export const loginAdmin = AsyncHandler(async (req, res) => {
         id: admin.id,
       },
       process.env.SECRET_KEY,
-      { expiresIn: "15m" }
+      { expiresIn: "45m" }
     );
 
     const refreshToken = jwt.sign(

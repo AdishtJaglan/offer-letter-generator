@@ -1,4 +1,4 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -12,7 +12,10 @@ const app = express();
 dotenv.config();
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/offer-letter-generator")
+  .connect(
+    process.env.MONGO_CONNECTION_STRING ||
+      "mongodb://127.0.0.1:27017/offer-letter-generator"
+  )
   .then(() => {
     console.log("connected to database");
   })
@@ -22,6 +25,7 @@ mongoose
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use("/auth", adminRoutes);
 app.use("/student", studentRoutes);
 app.use("/offer-letter", offerLetterRoutes);
