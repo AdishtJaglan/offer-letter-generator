@@ -1,4 +1,4 @@
-import express, { urlencoded } from "express";
+import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -29,6 +29,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/auth", adminRoutes);
 app.use("/student", studentRoutes);
 app.use("/offer-letter", offerLetterRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Server is up and running!");
+});
 
 //handle invalid routes
 app.all("*", (req, res, next) => {
