@@ -27,7 +27,7 @@ export async function populatePDF(input, output, data) {
     const refNo = form.getTextField("refNo");
 
     const longMessage = `We are pleased to offer you the position of "${data.domainName}" at Suvidha Foundation (Suvidha Mahila Mandal) with the following terms and conditions:`;
-    const shortMessage = `${data.domainName}, Services and Activities`;
+    const shortMessage = `${data.domainName}, Services and Social Activities`;
     const formattedDateOfJoining = formatDate(data.dateOfJoining);
     const formattedDateOfCompletion = formatDate(data.dateOfCompletion);
 
