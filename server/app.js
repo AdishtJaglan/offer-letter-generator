@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  dotenv.config();
+}
+
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -9,7 +13,6 @@ import studentRoutes from "./routes/student.js";
 import offerLetterRoutes from "./routes/offerLetter.js";
 
 const app = express();
-dotenv.config();
 
 mongoose
   .connect(
