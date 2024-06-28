@@ -43,29 +43,42 @@ const StudentSchema = new Schema({
   },
 });
 
-StudentSchema.pre("save", async function (next) {
-  if (this.isNew) {
-    try {
-      const counter = await Counter.findOneAndUpdate(
-        {},
-        { $inc: { sequenceValue: 1 } },
-        { new: true, upsert: true }
-      );
+async function generateRefNo(doc) {
+  try {
+    const counter = await Counter.findOneAndUpdate(
+      {},
+      { $inc: { sequenceValue: 1 } },
+      { new: true, upsert: true }
+    );
 
-      const currentYear = new Date().getFullYear();
-      const domainInitials = this.domain
-        .split(" ")
-        .map((word) => word[0])
-        .join("")
-        .toUpperCase();
-      const sequenceNumber = counter.sequenceValue.toString().padStart(6, "0");
+    const currentYear = new Date().getFullYear();
+    const domainInitials = doc.domain
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase();
+    const sequenceNumber = counter.sequenceValue.toString().padStart(6, "0");
 
-      this.refNo = `SMM${currentYear}${domainInitials}${sequenceNumber}`;
-    } catch (e) {
-      return next(e);
-    }
+    doc.refNo = `SMM${currentYear}${domainInitials}${sequenceNumber}`;
+  } catch (e) {
+    throw new Error(e);
   }
+}
 
+StudentSchema.pre("save", async function (next) {
+  if (this.isNew || this.isModified("domain")) {
+    await generateRefNo(this);
+  }
+  next();
+});
+
+StudentSchema.pre("findOneAndUpdate", async function (next) {
+  const update = this.getUpdate();
+  if (update.domain) {
+    const docToUpdate = await this.model.findOne(this.getQuery());
+    await generateRefNo(docToUpdate);
+    this.setUpdate(docToUpdate);
+  }
   next();
 });
 
