@@ -12,7 +12,7 @@ export const handleLogin = () => {
     const userPassword = document.querySelector("#password");
 
     axios
-      .post(`${process.env.API_URL}/auth/login`, {
+      .post(`https://offer-letter-generator-zlq7.onrender.com/auth/login`, {
         email: userEmail.value,
         password: userPassword.value,
       })

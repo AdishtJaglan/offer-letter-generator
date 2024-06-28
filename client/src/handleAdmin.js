@@ -43,7 +43,7 @@ export const updateAdminInfo = () => {
     if (accessToken) {
       try {
         const response = await axios.get(
-          `${process.env.API_URL}/auth/info/${id}`,
+          `https://offer-letter-generator-zlq7.onrender.com/auth/info/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -78,7 +78,7 @@ export const updateAdminInfo = () => {
       if (accessToken) {
         try {
           const response = await axios.put(
-            `${process.env.API_URL}/auth/update/${id}`,
+            `https://offer-letter-generator-zlq7.onrender.com/auth/update/${id}`,
             updatedAdminInfo,
             {
               headers: {
@@ -132,7 +132,7 @@ export const createAdmin = async () => {
       if (accessToken) {
         try {
           const response = await axios.post(
-            `${process.env.API_URL}/auth/register`,
+            "https://offer-letter-generator-zlq7.onrender.com/auth/register",
             adminInfo,
             {
               headers: {
@@ -167,11 +167,14 @@ export const viewAndDeleteAdmins = () => {
 
     if (accessToken) {
       try {
-        const response = await axios.get(`${process.env.API_URL}/auth/info`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const response = await axios.get(
+          `https://offer-letter-generator-zlq7.onrender.com/auth/info`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
 
         const admins = response.data.admins;
 
@@ -193,7 +196,7 @@ export const viewAndDeleteAdmins = () => {
         if (accessToken) {
           try {
             const response = await axios.delete(
-              `${process.env.API_URL}/auth/delete/${id}`,
+              `https://offer-letter-generator-zlq7.onrender.com/auth/delete/${id}`,
               {
                 headers: {
                   Authorization: `Bearer ${accessToken}`,

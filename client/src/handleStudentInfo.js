@@ -37,7 +37,7 @@ export const updateStudentInfo = async () => {
 
       try {
         const response = await axios.get(
-          `${process.env.API_URL}/student/${id}`,
+          `https://offer-letter-generator-zlq7.onrender.com/student/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -82,7 +82,7 @@ export const updateStudentInfo = async () => {
 
         try {
           const response = await axios.put(
-            `${process.env.API_URL}/student/${id}`,
+            `https://offer-letter-generator-zlq7.onrender.com/student/${id}`,
             updatedStudentInfo,
             {
               headers: {
@@ -117,7 +117,7 @@ export const viewStudentInfo = async () => {
 
       try {
         const response = await axios.get(
-          `${process.env.API_URL}/student/${id}`,
+          `https://offer-letter-generator-zlq7.onrender.com/student/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -215,7 +215,7 @@ export const createStudent = async () => {
 
     try {
       const response = await axios.post(
-        `${process.env.API_URL}/student/create`,
+        "https://offer-letter-generator-zlq7.onrender.com/student/create",
         createdStudentInfo,
         {
           headers: {

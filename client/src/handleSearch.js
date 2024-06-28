@@ -82,7 +82,7 @@ export const handleNameSearch = () => {
     if (accessToken) {
       try {
         const response = await axios.get(
-          `${process.env.API_URL}/student/name?name=${studentName}`,
+          `https://offer-letter-generator-zlq7.onrender.com/student/name?name=${studentName}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

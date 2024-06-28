@@ -52,7 +52,7 @@ export const downloadOfferLetter = async () => {
 
       try {
         const response = await axios.get(
-          `${process.env.API_URL}/offer-letter/download/${id}`,
+          `https://offer-letter-generator-zlq7.onrender.com/offer-letter/download/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -62,7 +62,7 @@ export const downloadOfferLetter = async () => {
         );
 
         const studentResponse = await axios.get(
-          `${process.env.API_URL}/student/${id}`,
+          `https://offer-letter-generator-zlq7.onrender.com/student/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -106,7 +106,7 @@ export const sendOfferLetter = async () => {
         spinnerIconImg.src = spinnerIcon;
 
         const response = await axios.get(
-          `${process.env.API_URL}/offer-letter/send/${id}`,
+          `https://offer-letter-generator-zlq7.onrender.com/offer-letter/send/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

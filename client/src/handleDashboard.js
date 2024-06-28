@@ -37,7 +37,7 @@ export const getStudents = async () => {
     if (accessToken) {
       try {
         const response = await axios.get(
-          `${process.env.API_URL}/student/info?limit=${limit}&skip=${skip}`,
+          `https://offer-letter-generator-zlq7.onrender.com/student/info?limit=${limit}&skip=${skip}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
