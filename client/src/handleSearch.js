@@ -82,7 +82,7 @@ export const handleNameSearch = () => {
     if (accessToken) {
       try {
         const response = await axios.get(
-          `http://localhost:3000/student/name?name=${studentName}`,
+          `${process.env.API_URL}/student/name?name=${studentName}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

@@ -52,7 +52,7 @@ export const downloadOfferLetter = async () => {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/offer-letter/download/${id}`,
+          `${process.env.API_URL}/offer-letter/download/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -62,7 +62,7 @@ export const downloadOfferLetter = async () => {
         );
 
         const studentResponse = await axios.get(
-          `http://localhost:3000/student/${id}`,
+          `${process.env.API_URL}/student/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -83,7 +83,7 @@ export const downloadOfferLetter = async () => {
 
         document.body.removeChild(link);
       } catch (err) {
-        console.log("Error: ", err.response);
+        console.log("Error: ", err.message);
       }
     });
   });
@@ -106,7 +106,7 @@ export const sendOfferLetter = async () => {
         spinnerIconImg.src = spinnerIcon;
 
         const response = await axios.get(
-          `http://localhost:3000/offer-letter/send/${id}`,
+          `${process.env.API_URL}/offer-letter/send/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

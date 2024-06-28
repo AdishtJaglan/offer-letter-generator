@@ -37,7 +37,7 @@ export const updateStudentInfo = async () => {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/student/${id}`,
+          `${process.env.API_URL}/student/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -82,7 +82,7 @@ export const updateStudentInfo = async () => {
 
         try {
           const response = await axios.put(
-            `http://localhost:3000/student/${id}`,
+            `${process.env.API_URL}/student/${id}`,
             updatedStudentInfo,
             {
               headers: {
@@ -117,7 +117,7 @@ export const viewStudentInfo = async () => {
 
       try {
         const response = await axios.get(
-          `http://localhost:3000/student/${id}`,
+          `${process.env.API_URL}/student/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -215,7 +215,7 @@ export const createStudent = async () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/student/create",
+        `${process.env.API_URL}/student/create`,
         createdStudentInfo,
         {
           headers: {

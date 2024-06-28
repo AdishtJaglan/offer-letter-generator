@@ -37,7 +37,7 @@ export const getStudents = async () => {
     if (accessToken) {
       try {
         const response = await axios.get(
-          `http://localhost:3000/student/info?limit=${limit}&skip=${skip}`,
+          `${process.env.API_URL}/student/info?limit=${limit}&skip=${skip}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

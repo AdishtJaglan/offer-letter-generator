@@ -12,7 +12,7 @@ export const handleLogin = () => {
     const userPassword = document.querySelector("#password");
 
     axios
-      .post("http://localhost:3000/auth/login", {
+      .post(`${process.env.API_URL}/auth/login`, {
         email: userEmail.value,
         password: userPassword.value,
       })

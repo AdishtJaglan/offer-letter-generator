@@ -15,7 +15,7 @@ export const showAllAdmins = () => {
 
     if (accessToken) {
       try {
-        const response = await axios.get("http://localhost:3000/auth/info", {
+        const response = await axios.get(`${process.env.API_URL}/auth/info`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -43,7 +43,7 @@ export const updateAdminInfo = () => {
     if (accessToken) {
       try {
         const response = await axios.get(
-          `http://localhost:3000/auth/info/${id}`,
+          `${process.env.API_URL}/auth/info/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -78,7 +78,7 @@ export const updateAdminInfo = () => {
       if (accessToken) {
         try {
           const response = await axios.put(
-            `http://localhost:3000/auth/update/${id}`,
+            `${process.env.API_URL}/auth/update/${id}`,
             updatedAdminInfo,
             {
               headers: {
@@ -132,7 +132,7 @@ export const createAdmin = async () => {
       if (accessToken) {
         try {
           const response = await axios.post(
-            "http://localhost:3000/auth/register",
+            `${process.env.API_URL}/auth/register`,
             adminInfo,
             {
               headers: {
@@ -167,7 +167,7 @@ export const viewAndDeleteAdmins = () => {
 
     if (accessToken) {
       try {
-        const response = await axios.get("http://localhost:3000/auth/info", {
+        const response = await axios.get(`${process.env.API_URL}/auth/info`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -193,7 +193,7 @@ export const viewAndDeleteAdmins = () => {
         if (accessToken) {
           try {
             const response = await axios.delete(
-              `http://localhost:3000/auth/delete/${id}`,
+              `${process.env.API_URL}/auth/delete/${id}`,
               {
                 headers: {
                   Authorization: `Bearer ${accessToken}`,
