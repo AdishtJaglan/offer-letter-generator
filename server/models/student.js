@@ -65,6 +65,27 @@ async function generateRefNo(doc) {
   }
 }
 
+async function updateRefNoForUpdates(next) {
+  const update = this.getUpdate();
+  const domain = update.$set?.domain || update.domain;
+
+  if (domain) {
+    try {
+      const docToUpdate = await this.model.findOne(this.getQuery());
+      docToUpdate.domain = domain;
+      await generateRefNo(docToUpdate);
+
+      if (!update.$set) {
+        update.$set = {};
+      }
+      update.$set.refNo = docToUpdate.refNo;
+    } catch (err) {
+      return next(err);
+    }
+  }
+  next();
+}
+
 StudentSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("domain")) {
     await generateRefNo(this);
@@ -72,15 +93,7 @@ StudentSchema.pre("save", async function (next) {
   next();
 });
 
-StudentSchema.pre("findOneAndUpdate", async function (next) {
-  const update = this.getUpdate();
-  if (update.domain) {
-    const docToUpdate = await this.model.findOne(this.getQuery());
-    await generateRefNo(docToUpdate);
-    this.setUpdate(docToUpdate);
-  }
-  next();
-});
+StudentSchema.pre("findOneAndUpdate", updateRefNoForUpdates);
 
 const Student = mongoose.model("Student", StudentSchema);
 export default Student;
