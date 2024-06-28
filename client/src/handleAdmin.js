@@ -15,11 +15,14 @@ export const showAllAdmins = () => {
 
     if (accessToken) {
       try {
-        const response = await axios.get(`${process.env.API_URL}/auth/info`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const response = await axios.get(
+          "https://offer-letter-generator-zlq7.onrender.com/auth/info",
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
 
         const admins = response.data.admins;
 
