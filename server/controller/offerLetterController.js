@@ -35,7 +35,7 @@ export const createPDFandSendMail = AsyncHandler(async (req, res) => {
 
     await Promise.all([
       populatePDF(
-        path.join(__dirname, "../template/updateOfferLetter.pdf"),
+        path.join(__dirname, "../template/offer-letter-template.pdf"),
         outputPDFPath,
         data
       ),
@@ -45,7 +45,34 @@ export const createPDFandSendMail = AsyncHandler(async (req, res) => {
           address: process.env.USER_EMAIL,
         },
         to: student.email,
-        subject: "Suvidha Offer Letter",
+        subject: "Re: Suvidha Offer Letter",
+        text: `
+    Dear intern,
+
+    Greetings of the day.
+
+    Congratulations on your offer from Suvidha Foundation!
+    Please find the attached - detailed offer letter.
+
+    For the process of acceptance, Please revert back the physically signed copy of the Offer Letter within 48 hours.
+    Email us here back:-
+    hr@suvidhafoundationedutech.org
+
+    After Successful Completion of your internship, You will be Awarded with "Certificate of Completion" And on the basis of your Performance "Letter of Recommendation".
+
+    We are looking forward to hearing from you and hope you'll join our team!
+
+    Best regards,
+
+    Human Resource Team
+    Mail: suvidhafoundation00@gmail.com
+    hr@suvidhafoundationedutech.org
+    Suvidha Foundation
+    R. No: MH/568/95/Nagpur
+    H.No. 1951, W.N.4, Khaperkheda, Saoner, Nagpur
+    Email:
+    info@suvidhafoundationedutech.org
+  `,
         attachments: [
           {
             filename: `${student.name}.pdf`,
@@ -91,7 +118,7 @@ export const createPDFandDownload = async (req, res) => {
     const outputPDFPath = path.join(__dirname, `../out/${student.name}.pdf`);
 
     await populatePDF(
-      path.join(__dirname, "../template/updateOfferLetter.pdf"),
+      path.join(__dirname, "../template/offer-letter-template.pdf"),
       outputPDFPath,
       data
     );
