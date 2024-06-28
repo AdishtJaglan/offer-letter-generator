@@ -28,7 +28,9 @@ mongoose
 
 app.use(
   cors({
-    origin: "*",
+    origin: [
+      "https://offer-letter-generator-mvm98n54z-adishtjaglans-projects.vercel.app",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
