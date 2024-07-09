@@ -2,6 +2,7 @@ import express from "express";
 import {
   createStudent,
   deleteStudent,
+  getLatestStudents,
   getOneStudent,
   getStudents,
   searchStudentByName,
@@ -25,6 +26,11 @@ router.get("/info", verifyToken, getStudents);
 //@auth required
 //@route GET /student/name?limit=N&skip=M
 router.get("/name", verifyToken, searchStudentByName);
+
+//@desc get last 10 entries from the database
+//@auth required
+//@route GET /student/latest
+router.get("/latest", verifyToken, getLatestStudents);
 
 //@desc get a single student info
 //@auth required

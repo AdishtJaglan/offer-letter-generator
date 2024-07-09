@@ -43,6 +43,22 @@ export const createStudent = AsyncHandler(async (req, res) => {
   }
 });
 
+//@desc get last 10 entries from the database
+//@auth required
+//@route GET /student/latest
+export const getLatestStudents = AsyncHandler(async (req, res) => {
+  try {
+    const limit = 10;
+    const students = await Student.find().sort({ _id: -1 }).limit(limit);
+
+    res.status(200).json(students.reverse());
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error fetching latest entries: " + error.message });
+  }
+});
+
 //@desc get all student info, can add query strings ?limit=N and ?skip=M to get N entries starting from M
 //@auth required
 //@route GET /student/info?limit=N&skip=M
