@@ -4,7 +4,12 @@ import logoutIcon from "./images/logout.svg";
 import bellIcon from "./images/bell.svg";
 import accountPlusIcon from "./images/account-plus-outline.svg";
 import { createStudent } from "./handleStudentInfo";
-import { getStudents, logoutEvent, toggleSidebar } from "./handleDashboard";
+import {
+  getStudents,
+  logoutEvent,
+  reloadPage,
+  toggleSidebar,
+} from "./handleDashboard";
 import {
   createAdmin,
   showAllAdmins,
@@ -79,6 +84,7 @@ export const createDashboard = async (adminName, adminId) => {
 
     <div class="main-content">
       <div class="pagination-buttons">
+        <button class="reload-page">reload</button>
         <button class="previous-page">Previous</button>
         <button class="next-page">Next</button>
       </div>
@@ -235,6 +241,7 @@ export const createDashboard = async (adminName, adminId) => {
 
   handleNameSearch();
   getStudents();
+  reloadPage();
   toggleSidebar();
   createStudent();
   logoutEvent();
